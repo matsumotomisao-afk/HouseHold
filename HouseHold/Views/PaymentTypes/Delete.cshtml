@@ -1,0 +1,27 @@
+@model HouseHold.Models.PaymentType
+
+@{
+    ViewData["Title"] = "決済種類削除";
+}
+
+<h1>決済種類削除</h1>
+
+<h3>この決済種類を削除してもよろしいですか?</h3>
+<div>
+    <h4>決済種類</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PaymentTypeId" />
+        <input type="submit" value="削除" class="btn btn-danger" /> |
+        <a asp-action="Index">一覧に戻る</a>
+    </form>
+</div>

@@ -1,0 +1,71 @@
+@model IEnumerable<HouseHold.Models.Payment>
+
+@{
+    ViewData["Title"] = "支払一覧";
+}
+
+<h1>支払一覧</h1>
+
+<p>
+    <a asp-action="Create">新規作成</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Posted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectNameNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentTypeNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethodNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectNameNavigation.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentTypeNavigation.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethodNavigation.MethodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PaymentId">編集</a> |
+                <a asp-action="Details" asp-route-id="@item.PaymentId">詳細</a> |
+                <a asp-action="Delete" asp-route-id="@item.PaymentId">削除</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

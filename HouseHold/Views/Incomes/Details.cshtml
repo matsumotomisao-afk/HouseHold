@@ -1,0 +1,42 @@
+@model HouseHold.Models.Income
+
+@{
+    ViewData["Title"] = "収入詳細";
+}
+
+<h1>収入詳細</h1>
+
+<div>
+    <h4>収入</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Posted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Posted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IncomeClassNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncomeClassNavigation.IncomeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IncomeId">編集</a> |
+    <a asp-action="Index">一覧に戻る</a>
+</div>

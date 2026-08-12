@@ -1,0 +1,27 @@
+@model HouseHold.Models.IncomeClass
+
+@{
+    ViewData["Title"] = "所得区分削除";
+}
+
+<h1>所得区分削除</h1>
+
+<h3>この所得区分を削除してもよろしいですか？</h3>
+<div>
+    <h4>所得区分</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IncomeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncomeName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IncomeClassId" />
+        <input type="submit" value="削除" class="btn btn-danger" /> |
+        <a asp-action="Index">一覧に戻る</a>
+    </form>
+</div>

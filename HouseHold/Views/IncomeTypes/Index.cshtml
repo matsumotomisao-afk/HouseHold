@@ -1,0 +1,41 @@
+@model IEnumerable<HouseHold.Models.IncomeType>
+
+@{
+    ViewData["Title"] = "所得の種類一覧";
+}
+
+<h1>所得の種類一覧</h1>
+
+<p>
+    <a asp-action="Create">新規作成</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomeClassId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncomeClassId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IncomeTypeId">編集</a> |
+                <a asp-action="Details" asp-route-id="@item.IncomeTypeId">詳細</a> |
+                <a asp-action="Delete" asp-route-id="@item.IncomeTypeId">削除</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

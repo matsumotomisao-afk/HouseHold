@@ -1,0 +1,66 @@
+@model HouseHold.Models.Payment
+
+@{
+    ViewData["Title"] = "支払編集";
+}
+
+<h1>支払編集</h1>
+
+<h4>支払</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PaymentId" />
+            <div class="form-group">
+                <label asp-for="Posted" class="control-label"></label>
+                <input asp-for="Posted" class="form-control" />
+                <span asp-validation-for="Posted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectNameId" class="control-label"></label>
+                <select asp-for="SubjectNameId" class="form-control" asp-items="ViewBag.SubjectNameId"></select>
+                <span asp-validation-for="SubjectNameId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentName" class="control-label"></label>
+                <input asp-for="PaymentName" class="form-control" />
+                <span asp-validation-for="PaymentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTypeId" class="control-label"></label>
+                <select asp-for="PaymentTypeId" class="form-control" asp-items="ViewBag.PaymentTypeId"></select>
+                <span asp-validation-for="PaymentTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethodId" class="control-label"></label>
+                <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId">
+                    <option value="">-- 選択なし --</option>
+                </select>
+                <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">一覧に戻る</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

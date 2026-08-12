@@ -1,0 +1,47 @@
+@model HouseHold.Models.Income
+
+@{
+    ViewData["Title"] = "収入作成";
+}
+
+<h1>収入作成</h1>
+
+<h4>収入</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Posted" class="control-label"></label>
+                <input asp-for="Posted" class="form-control" />
+                <span asp-validation-for="Posted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IncomeClassId" class="control-label"></label>
+                <select asp-for="IncomeClassId" class ="form-control" asp-items="ViewBag.IncomeClassId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeName" class="control-label"></label>
+                <input asp-for="TypeName" class="form-control" />
+                <span asp-validation-for="TypeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="作成" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">一覧に戻る</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
