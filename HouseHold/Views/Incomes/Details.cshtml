@@ -23,10 +23,10 @@
             @Html.DisplayFor(model => model.IncomeClassNavigation.IncomeName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeName)
+            @Html.DisplayNameFor(model => model.IncomeTypeNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeName)
+            @Html.DisplayFor(model => model.IncomeTypeNavigation.TypeName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Amount)
@@ -37,6 +37,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IncomeId">編集</a> |
+    <a asp-action="Edit" asp-route-id="@Model.IncomeId">編集</a> |
     <a asp-action="Index">一覧に戻る</a>
 </div>

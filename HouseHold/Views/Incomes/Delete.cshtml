@@ -6,7 +6,7 @@
 
 <h1>収入削除</h1>
 
-<h3>この収入を削除してもよろしいですか？</h3>
+<h3>本当に削除しますか？</h3>
 <div>
     <h4>収入</h4>
     <hr />
@@ -24,10 +24,10 @@
             @Html.DisplayFor(model => model.IncomeClassNavigation.IncomeName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeName)
+            @Html.DisplayNameFor(model => model.IncomeTypeNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeName)
+            @Html.DisplayFor(model => model.IncomeTypeNavigation.TypeName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Amount)

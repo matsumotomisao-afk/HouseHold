@@ -36,17 +36,17 @@ namespace HouseHold.Migrations
                     b.Property<int>("IncomeClassId")
                         .HasColumnType("int");
 
+                    b.Property<int>("IncomeTypeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Posted")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("TypeName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("IncomeId");
 
                     b.HasIndex("IncomeClassId");
+
+                    b.HasIndex("IncomeTypeId");
 
                     b.ToTable("Incomes");
                 });
@@ -227,16 +227,26 @@ namespace HouseHold.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HouseHold.Models.IncomeType", "IncomeTypeNavigation")
+                        .WithMany()
+                        .HasForeignKey("IncomeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("IncomeClassNavigation");
+
+                    b.Navigation("IncomeTypeNavigation");
                 });
 
             modelBuilder.Entity("HouseHold.Models.IncomeType", b =>
                 {
-                    b.HasOne("HouseHold.Models.IncomeClass", null)
+                    b.HasOne("HouseHold.Models.IncomeClass", "IncomeClass")
                         .WithMany("IncomeTypes")
                         .HasForeignKey("IncomeClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("IncomeClass");
                 });
 
             modelBuilder.Entity("HouseHold.Models.Payment", b =>

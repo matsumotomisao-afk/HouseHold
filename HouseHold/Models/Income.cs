@@ -13,9 +13,10 @@ namespace HouseHold.Models
         public int IncomeClassId { get; set; }
         public IncomeClass? IncomeClassNavigation { get; set; }  //1対多のリレーションシップを構築するためのNavigationプロパティ
 
-        [Required, StringLength(50)]
+        [Required]
         [Display(Name = "所得の種類")]
-        public string? TypeName { get; set; }
+        public int IncomeTypeId { get; set; } 
+        public IncomeType? IncomeTypeNavigation { get; set; }  //1対多のリレーションシップを構築するためのNavigationプロパティ
 
         [Required]
         [Display(Name = "金額")]

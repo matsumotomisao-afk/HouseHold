@@ -15,7 +15,7 @@
             <input type="hidden" asp-for="IncomeId" />
             <div class="form-group">
                 <label asp-for="Posted" class="control-label"></label>
-                <input asp-for="Posted" class="form-control" />
+                <input asp-for="Posted" class="form-control" type="datetime-local" />
                 <span asp-validation-for="Posted" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -24,9 +24,9 @@
                 <span asp-validation-for="IncomeClassId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeName" class="control-label"></label>
-                <input asp-for="TypeName" class="form-control" />
-                <span asp-validation-for="TypeName" class="text-danger"></span>
+                <label asp-for="IncomeTypeId" class="control-label"></label>
+                <select asp-for="IncomeTypeId" class="form-control" asp-items="ViewBag.IncomeTypeId"></select>
+                <span asp-validation-for="IncomeTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>

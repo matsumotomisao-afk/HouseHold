@@ -11,16 +11,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            所得区分
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncomeClass.IncomeName)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TypeName)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TypeName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IncomeClassId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IncomeClassId)
         </dd>
     </dl>
 </div>

@@ -13,14 +13,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="IncomeClassId" class="control-label">所得区分</label>
+                <select asp-for="IncomeClassId" class="form-control" asp-items="ViewBag.IncomeClassId"></select>
+                <span asp-validation-for="IncomeClassId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="TypeName" class="control-label"></label>
                 <input asp-for="TypeName" class="form-control" />
                 <span asp-validation-for="TypeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IncomeClassId" class="control-label"></label>
-                <input asp-for="IncomeClassId" class="form-control" />
-                <span asp-validation-for="IncomeClassId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="作成" class="btn btn-primary" />

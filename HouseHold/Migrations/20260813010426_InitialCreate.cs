@@ -67,35 +67,13 @@ namespace HouseHold.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Incomes",
-                columns: table => new
-                {
-                    IncomeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Posted = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IncomeClassId = table.Column<int>(type: "int", nullable: false),
-                    TypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Incomes", x => x.IncomeId);
-                    table.ForeignKey(
-                        name: "FK_Incomes_IncomeClasses_IncomeClassId",
-                        column: x => x.IncomeClassId,
-                        principalTable: "IncomeClasses",
-                        principalColumn: "IncomeClassId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "IncomeTypes",
                 columns: table => new
                 {
                     IncomeTypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IncomeClassId = table.Column<int>(type: "int", nullable: false)
+                    IncomeClassId = table.Column<int>(type: "int", nullable: false),
+                    TypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,6 +104,34 @@ namespace HouseHold.Migrations
                         principalTable: "PaymentTypes",
                         principalColumn: "PaymentTypeId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Incomes",
+                columns: table => new
+                {
+                    IncomeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Posted = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IncomeClassId = table.Column<int>(type: "int", nullable: false),
+                    IncomeTypeId = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Incomes", x => x.IncomeId);
+                    table.ForeignKey(
+                        name: "FK_Incomes_IncomeClasses_IncomeClassId",
+                        column: x => x.IncomeClassId,
+                        principalTable: "IncomeClasses",
+                        principalColumn: "IncomeClassId",
+                        onDelete: ReferentialAction.NoAction); // NoActionに変更:親テーブルの変更時に子テーブルへ自動処理を行わない設定です。
+                    table.ForeignKey(
+                        name: "FK_Incomes_IncomeTypes_IncomeTypeId",
+                        column: x => x.IncomeTypeId,
+                        principalTable: "IncomeTypes",
+                        principalColumn: "IncomeTypeId",
+                        onDelete: ReferentialAction.NoAction);    // NoActionに変更:親テーブルの変更時に子テーブルへ自動処理を行わない設定です。
                 });
 
             migrationBuilder.CreateTable(
@@ -170,6 +176,11 @@ namespace HouseHold.Migrations
                 column: "IncomeClassId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Incomes_IncomeTypeId",
+                table: "Incomes",
+                column: "IncomeTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_IncomeTypes_IncomeClassId",
                 table: "IncomeTypes",
                 column: "IncomeClassId");
@@ -202,22 +213,22 @@ namespace HouseHold.Migrations
                 name: "Incomes");
 
             migrationBuilder.DropTable(
-                name: "IncomeTypes");
-
-            migrationBuilder.DropTable(
                 name: "MonthlyBudgets");
 
             migrationBuilder.DropTable(
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "IncomeClasses");
+                name: "IncomeTypes");
 
             migrationBuilder.DropTable(
                 name: "PaymentMethods");
 
             migrationBuilder.DropTable(
                 name: "SubjectNames");
+
+            migrationBuilder.DropTable(
+                name: "IncomeClasses");
 
             migrationBuilder.DropTable(
                 name: "PaymentTypes");

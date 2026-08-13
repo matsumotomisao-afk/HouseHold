@@ -18,7 +18,9 @@ namespace HouseHold.Controllers
         // GET: Incomes
         public async Task<IActionResult> Index()
         {
-            var incomes = _context.Incomes.Include(i => i.IncomeClassNavigation);
+            var incomes = _context.Incomes
+                .Include(i => i.IncomeClassNavigation)  //
+                .Include(i => i.IncomeTypeNavigation);
             return View(await incomes.ToListAsync());
         }
 
@@ -32,6 +34,7 @@ namespace HouseHold.Controllers
 
             var income = await _context.Incomes
                 .Include(i => i.IncomeClassNavigation)
+                .Include(i => i.IncomeTypeNavigation)
                 .FirstOrDefaultAsync(m => m.IncomeId == id);
             if (income == null)
             {
@@ -45,13 +48,14 @@ namespace HouseHold.Controllers
         public IActionResult Create()
         {
             ViewData["IncomeClassId"] = new SelectList(_context.IncomeClasses, "IncomeClassId", "IncomeName");
+            ViewData["IncomeTypeId"] = new SelectList(_context.IncomeTypes, "IncomeTypeId", "TypeName");
             return View();
         }
 
         // POST: Incomes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IncomeId,Posted,IncomeClassId,TypeName,Amount")] Income income)
+        public async Task<IActionResult> Create([Bind("IncomeId,Posted,IncomeClassId,IncomeTypeId,Amount")] Income income)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +64,7 @@ namespace HouseHold.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IncomeClassId"] = new SelectList(_context.IncomeClasses, "IncomeClassId", "IncomeName", income.IncomeClassId);
+            ViewData["IncomeTypeId"] = new SelectList(_context.IncomeTypes, "IncomeTypeId", "TypeName", income.IncomeTypeId);
             return View(income);
         }
 
@@ -77,13 +82,14 @@ namespace HouseHold.Controllers
                 return NotFound();
             }
             ViewData["IncomeClassId"] = new SelectList(_context.IncomeClasses, "IncomeClassId", "IncomeName", income.IncomeClassId);
+            ViewData["IncomeTypeId"] = new SelectList(_context.IncomeTypes, "IncomeTypeId", "TypeName", income.IncomeTypeId);
             return View(income);
         }
 
         // POST: Incomes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IncomeId,Posted,IncomeClassId,TypeName,Amount")] Income income)
+        public async Task<IActionResult> Edit(int id, [Bind("IncomeId,Posted,IncomeClassId,IncomeTypeId,Amount")] Income income)
         {
             if (id != income.IncomeId)
             {
@@ -111,6 +117,7 @@ namespace HouseHold.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IncomeClassId"] = new SelectList(_context.IncomeClasses, "IncomeClassId", "IncomeName", income.IncomeClassId);
+            ViewData["IncomeTypeId"] = new SelectList(_context.IncomeTypes, "IncomeTypeId", "TypeName", income.IncomeTypeId);
             return View(income);
         }
 
@@ -124,6 +131,7 @@ namespace HouseHold.Controllers
 
             var income = await _context.Incomes
                 .Include(i => i.IncomeClassNavigation)
+                .Include(i => i.IncomeTypeNavigation)
                 .FirstOrDefaultAsync(m => m.IncomeId == id);
             if (income == null)
             {
